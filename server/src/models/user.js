@@ -30,7 +30,7 @@ const userSchema = new Schema(
     },
     profileImage: {
       type: String,
-      default: "default-avatar.jpg",
+  
     },
     phone: {
       type: String,

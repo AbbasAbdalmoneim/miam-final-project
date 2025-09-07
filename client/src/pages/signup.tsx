@@ -1,4 +1,4 @@
-/* eslint-disable no-useless-escape */
+
 import { useState } from "react";
 import {
   Eye,

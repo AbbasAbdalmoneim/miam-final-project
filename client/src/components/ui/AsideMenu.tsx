@@ -62,11 +62,11 @@ const AsideMenu: React.FC<SidebarProps> = ({ className = "" }) => {
   };
 
   const handleLogout = () => {
-    // ✅ Clear authentication (customize this to your needs)
+
     localStorage.removeItem("token");
     sessionStorage.clear();
 
-    // ✅ Redirect to login page
+
     navigate("/login");
   };
 
@@ -114,7 +114,7 @@ const AsideMenu: React.FC<SidebarProps> = ({ className = "" }) => {
       title: "Account Management",
       items: [
         { icon: UserCog, href: "manage-users", label: "Manage Users" },
-        { icon: LogOut, label: "Logout" }, // 👈 no href, handled separately
+        { icon: LogOut, label: "Logout" },
       ],
     },
   ];

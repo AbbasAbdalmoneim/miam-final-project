@@ -1,9 +1,9 @@
 import { Router } from "express";
-import User from "../models/user.js"; // ✨ غير الباث حسب مكان الموديل
+import User from "../models/user.js"; 
 
 const router = Router();
 
-// GET /users → رجع كل المستخدمين
+
 router.get("/", async (req, res) => {
   try {
     const users = await User.find();

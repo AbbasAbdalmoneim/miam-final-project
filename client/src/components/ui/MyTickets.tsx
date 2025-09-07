@@ -65,7 +65,7 @@ export interface TicketInfoDetailsProps {
   onClose: () => void;
 }
 
-// Enhanced Modal Component
+
 const TicketInfoDetails: React.FC<TicketInfoDetailsProps> = ({
   ticket,
   onClose,
@@ -280,13 +280,13 @@ const TicketInfoDetails: React.FC<TicketInfoDetailsProps> = ({
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-600">Price per ticket</span>
-                    <span className="font-semibold">${ticket.price}</span>
+                    <span className="font-semibold">{ticket.price} EGP</span>
                   </div>
                   <div className="border-t border-slate-200 pt-3">
                     <div className="flex justify-between items-center">
                       <span className="font-bold text-slate-800">Total</span>
                       <span className="font-bold text-2xl text-purple-600">
-                        ${ticket.price * ticket.quantity}
+                        {ticket.price} EGP
                       </span>
                     </div>
                   </div>
@@ -322,7 +322,6 @@ const TicketInfoDetails: React.FC<TicketInfoDetailsProps> = ({
           </div>
         </div>
 
-        {/* Footer Actions */}
         <div className="p-6 bg-gradient-to-r from-slate-800 to-slate-700 text-white">
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
@@ -383,7 +382,7 @@ const MyTickets: React.FC = () => {
       user: "68a334ca1441b9f5d8c6666e",
       ticketType: "general",
       seatsNumber: ["C-1", "C-2", "C-3"],
-      price: 50,
+      price: 100,
       quantity: 3,
       status: "paid",
       qrCode: `http://localhost:3000/ticket/68b5f8d5462c2920bf464728`,
@@ -691,7 +690,7 @@ const MyTickets: React.FC = () => {
                       <div>
                         <div className="text-xs text-slate-600 mb-1">Total Price</div>
                         <div className="text-2xl font-bold text-purple-600">
-                          ${ticket.price * ticket.quantity}
+                          {ticket.price} EGP
                         </div>
                       </div>
                       <div className="text-right">

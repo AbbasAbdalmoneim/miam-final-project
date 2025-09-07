@@ -14,7 +14,7 @@ export interface BookingContextType {
   getTotalPrice: () => number;
   getSelectedSeatCount: () => number;
   handleSeatClick: (rowIndex: number, seatIndex: number) => void;
-  initializeSeats: (seatData: Seat[][]) => void; // Added for initialization
+  initializeSeats: (seatData: Seat[][]) => void; 
 }
 
 const BookingTicketsContext = createContext<BookingContextType | undefined>(
@@ -36,7 +36,7 @@ export const BookingTicketsProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  // Initialize with some sample seat data for testing
+
   const [seats, setSeats] = useState<Seat[][]>([
     [
       { id: 1, number: "1", status: "available" },
@@ -64,7 +64,7 @@ export const BookingTicketsProvider = ({
   
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
 
-  // Initialize seats from external data
+
   const initializeSeats = (seatData: Seat[][]) => {
     setSeats(seatData);
   };
@@ -89,14 +89,14 @@ export const BookingTicketsProvider = ({
   };
 
   const getTotalPrice = () => {
-    // Replace 50 with your actual ticket price
+
     return selectedSeats.length * 50;
   };
 
   const getSelectedSeatCount = () => selectedSeats.length;
 
   const handleSeatClick = (rowIndex: number, seatIndex: number) => {
-    // Check if seat exists and is available
+
     if (!seats[rowIndex] || !seats[rowIndex][seatIndex]) {
       console.error("Invalid seat position");
       return;
@@ -152,7 +152,7 @@ const SeatBooking = () => {
     handleSeatClick,
   } = useBookingTickets();
 
-  // Enhanced booking confirmation handler
+ 
   const handleConfirmBooking = () => {
     console.log("Confirm booking clicked");
     console.log("Selected seats:", selectedSeats);
@@ -163,31 +163,31 @@ const SeatBooking = () => {
       return;
     }
 
-    // Store booking data for payment page
+
     const bookingData = {
       selectedSeats,
       totalPrice: getTotalPrice(),
       seatCount: getSelectedSeatCount(),
     };
     
-    // Store in localStorage or pass via navigation state
+ 
     localStorage.setItem('bookingData', JSON.stringify(bookingData));
     
     console.log("Navigating to payment with data:", bookingData);
     
-    // Navigate to payment page
+ 
     try {
       navigate("/payment", { 
         state: bookingData 
       });
     } catch (error) {
       console.error("Navigation failed:", error);
-      // Fallback navigation
+ 
       navigate("/payment");
     }
   };
 
-  // Debug: Log current state
+
   console.log("SeatBooking render - Selected seats:", selectedSeats);
   console.log("SeatBooking render - Total seats:", seats.flat().length);
 

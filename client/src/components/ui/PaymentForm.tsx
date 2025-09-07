@@ -22,7 +22,11 @@ export interface PaymentFormData {
   cvc: string;
 }
 
-const PaymentForm = () => {
+interface PaymentFormProps {
+  eventId: string;
+}
+
+const PaymentForm: React.FC<PaymentFormProps> = ({  }) => {
   const { totalTicketsPrice, selectedSeats, handleTickets } =
     useBookingTickets();
   const navigate = useNavigate();
@@ -147,7 +151,7 @@ const PaymentForm = () => {
           }`}
         >
           <CardHeader className="text-center p-8 pb-6">
-            {/* Premium Header with Icons */}
+ 
             <div className="flex items-center justify-center mb-4">
               <div className="p-3 bg-gradient-to-r from-violet-600 to-purple-600 rounded-2xl shadow-lg">
                 <CreditCard className="w-8 h-8 text-white" />
@@ -163,7 +167,7 @@ const PaymentForm = () => {
               <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 rounded-2xl">
                 <Sparkles className="w-5 h-5 text-emerald-600" />
                 <span className="text-2xl font-bold text-emerald-700">
-                  ${totalTicketsPrice}
+                  EGP{totalTicketsPrice}
                 </span>
               </div>
             </div>
@@ -179,7 +183,7 @@ const PaymentForm = () => {
 
           <CardContent className="p-8 pt-4">
             <form onSubmit={handleSubmit} className="space-y-8">
-              {/* Enhanced Payment Method Selection */}
+   
               <div className="space-y-4">
                 <Label className="text-lg font-bold flex items-center gap-2">
                   <Shield className="w-5 h-5 text-violet-600" />
@@ -318,7 +322,7 @@ const PaymentForm = () => {
                 ) : (
                   <div className="flex items-center gap-3">
                     <Lock className="w-5 h-5" />
-                    <span>Pay ${totalTicketsPrice}</span>
+                    <span>Pay {totalTicketsPrice} EGP</span>
                   </div>
                 )}
               </Button>

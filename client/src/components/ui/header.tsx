@@ -40,7 +40,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           
-          {/* Left: Logo */}
+
           <Link to="/events" className="flex items-center gap-2">
             <img src="/icon.svg" alt="Ticket" className="w-8 h-8" />
             <span className="text-2xl font-bold text-slate-900">
@@ -48,7 +48,7 @@ const Header = () => {
             </span>
           </Link>
 
-          {/* Center: Navigation */}
+    
           <nav className="hidden lg:flex items-center gap-8 text-slate-700 font-medium">
             {isAuthenticated ? (
               <>
@@ -97,7 +97,7 @@ const Header = () => {
             )}
           </nav>
 
-          {/* Right: User actions */}
+
           {isAuthenticated && (
             <div className="hidden lg:flex items-center gap-4">
               <div className="px-4 py-2 bg-slate-100 rounded-xl">
@@ -113,7 +113,7 @@ const Header = () => {
             </div>
           )}
 
-          {/* Mobile Button */}
+ 
           <div className="lg:hidden">
             <button
               onClick={toggleMobileMenu}
@@ -125,7 +125,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-md border-t">
           <div className="px-6 py-6 space-y-4">

@@ -67,7 +67,7 @@ const ShowEventDetails = ({
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
-      currency: "USD",
+      currency: "EGP",
     }).format(amount);
   };
 
@@ -155,14 +155,14 @@ const ShowEventDetails = ({
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Animated Background Elements */}
+  
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
         <div className="absolute top-40 left-1/2 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-500"></div>
       </div>
 
-      {/* Floating Navigation */}
+
       <div className="fixed top-6 left-6 z-50">
         <button
           onClick={() => navigate(-1)}
@@ -173,7 +173,7 @@ const ShowEventDetails = ({
         </button>
       </div>
 
-      {/* Hero Section with Parallax */}
+    
       <div
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
@@ -183,7 +183,7 @@ const ShowEventDetails = ({
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/60"></div>
 
-        {/* Content */}
+
         <div className="relative z-10 text-center text-white max-w-5xl mx-auto px-6">
           <div className="mb-8 flex justify-center">
             <div className="text-8xl md:text-9xl lg:text-[12rem] animate-bounce-slow filter drop-shadow-2xl">
@@ -199,7 +199,7 @@ const ShowEventDetails = ({
             {event.description}
           </p>
 
-          {/* Status and Stats Row */}
+
           <div className="flex flex-wrap items-center justify-center gap-6 mb-12">
             <div
               className={`px-6 py-3 rounded-full bg-gradient-to-r ${statusConfig.color} text-white font-semibold text-lg shadow-xl`}
@@ -221,7 +221,7 @@ const ShowEventDetails = ({
             </div>
           </div>
 
-          {/* CTA Buttons */}
+
           <div className="flex flex-wrap items-center justify-center gap-4">
             {isBookingAvailable ? (
               <Button
@@ -250,15 +250,15 @@ const ShowEventDetails = ({
           </div>
         </div>
 
-        {/* Scroll Indicator */}
+
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <ChevronRight className="w-6 h-6 text-white rotate-90" />
         </div>
       </div>
 
-      {/* Main Content */}
+
       <div className="relative bg-white">
-        {/* Tab Navigation */}
+
         <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-lg border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
@@ -295,10 +295,10 @@ const ShowEventDetails = ({
         </div>
 
         <div className="max-w-7xl mx-auto px-6 py-12">
-          {/* Overview Tab */}
+
           {activeTab === "overview" && (
             <div className="space-y-12">
-              {/* Stats Grid */}
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <Card className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-gradient-to-br from-blue-50 to-indigo-100 border-0">
                   <CardContent className="p-8 text-center">
@@ -351,7 +351,6 @@ const ShowEventDetails = ({
                 </Card>
               </div>
 
-              {/* Event Information Grid */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-gray-50">
                   <CardHeader className="pb-6">
@@ -452,7 +451,7 @@ const ShowEventDetails = ({
             </div>
           )}
 
-          {/* Seating Tab */}
+ 
           {activeTab === "seating" && (
             <div className="space-y-8">
               <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-blue-50">
@@ -525,7 +524,7 @@ const ShowEventDetails = ({
                     </div>
                   )}
 
-                  {/* Seating Statistics */}
+
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {[
                       {
@@ -583,11 +582,11 @@ const ShowEventDetails = ({
             </div>
           )}
 
-          {/* Details Tab */}
+
           {activeTab === "details" && (
             <div className="space-y-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Ticket Information */}
+
                 <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-purple-50">
                   <CardHeader className="pb-6">
                     <CardTitle className="flex items-center gap-3 text-2xl">
@@ -636,7 +635,7 @@ const ShowEventDetails = ({
                   </CardContent>
                 </Card>
 
-                {/* Tags and Categories */}
+ 
                 <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-orange-50">
                   <CardHeader className="pb-6">
                     <CardTitle className="flex items-center gap-3 text-2xl">
@@ -691,7 +690,7 @@ const ShowEventDetails = ({
             </div>
           )}
 
-          {/* Analytics Tab */}
+
           {activeTab === "analytics" && (
             <div className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -781,7 +780,7 @@ const ShowEventDetails = ({
           )}
         </div>
 
-        {/* Floating Action Button */}
+
         {isBookingAvailable && (
           <div className="fixed bottom-8 right-8 z-50">
             <Button

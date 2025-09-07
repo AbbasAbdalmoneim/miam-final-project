@@ -26,11 +26,7 @@ interface User {
   status?: "active" | "blocked";
 }
 
-interface ApiResponse {
-  success: boolean;
-  count: number;
-  data: User[];
-}
+
 
 const ManageUsers: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -41,111 +37,57 @@ const ManageUsers: React.FC = () => {
   const [roleFilter, setRoleFilter] = useState<"all" | "USER" | "ADMIN">("all");
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
-  // Base URL - you can replace this with your actual base URL
+
   const BASE_URL = "{{BASE_URL}}";
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        
-        // Replace {{BASE_URL}} with actual URL if needed
-        const url = BASE_URL.includes("{{") ? "https://api.example.com/users" : `${BASE_URL}/users`;
-        
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            // Add authorization header if needed
-            // 'Authorization': `Bearer ${token}`,
-          },
-        });
+  const fetchUsers = async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-        if (response.ok) {
-          const apiResponse: ApiResponse = await response.json();
-          // Add default status to users since it's not in the API response
-          const usersWithStatus = apiResponse.data.map(user => ({
-            ...user,
-            status: (user.status || "active") as "active" | "blocked"
-          }));
-          setUsers(usersWithStatus);
-        } else {
-          throw new Error(`Failed to fetch users: ${response.status}`);
-        }
-      } catch (error) {
-        console.error("Error fetching users:", error);
-        setError(error instanceof Error ? error.message : "Failed to fetch users");
-        // Use mock data for demonstration
-        setUsers([
-          {
-            _id: "68b8db83c7d93762986ade45",
-            name: "Ahmed G3far",
-            email: "testuser@gmail.com",
-            role: "USER",
-            profileImage: "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
-            createdAt: "2025-09-04T00:21:23.222Z",
-            updatedAt: "2025-09-04T00:21:23.222Z",
-            status: "active"
-          },
-          {
-            _id: "68b8dcb8c7d93762986ade69",
-            name: "Administrator 162",
-            email: "admin162@gmail.com",
-            role: "ADMIN",
-            profileImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLKYamkRB_qMHdd_HvhrxBlHhExgcAW6Mquw&s",
-            createdAt: "2025-09-04T00:26:32.063Z",
-            updatedAt: "2025-09-04T00:26:32.063Z",
-            status: "active"
-          },
-          {
-            _id: "68b8e41ec7d93762986adf76",
-            name: "Mo Badri",
-            email: "mobadri22@gmaill.com",
-            role: "USER",
-            profileImage: "https://plus.unsplash.com/premium_photo-1689539137236-b68e436248de?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI4fHx8ZW58MHx8fHx8",
-            createdAt: "2025-09-04T00:58:06.124Z",
-            updatedAt: "2025-09-04T00:58:06.124Z",
-            status: "blocked"
-          },
-          {
-            _id: "68b8e890c7d93762986ae09a",
-            name: "Mahmoud Kamal",
-            email: "mahmoudkamal@gmail.com",
-            role: "USER",
-            profileImage: "https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg",
-            createdAt: "2025-09-04T01:17:04.544Z",
-            updatedAt: "2025-09-04T01:17:04.544Z",
-            status: "active"
-          },
-          {
-            _id: "68b8e9b9c7d93762986ae0bb",
-            name: "Hoda Ali",
-            email: "hodaali88@gmail.com",
-            role: "USER",
-            profileImage: "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=",
-            createdAt: "2025-09-04T01:22:01.879Z",
-            updatedAt: "2025-09-04T01:22:01.879Z",
-            status: "active"
-          },
-          {
-            _id: "68b8fb9dc7d93762986ae159",
-            name: "admin user",
-            email: "adminuser@gmail.com",
-            role: "ADMIN",
-            profileImage: "https://cdn-icons-png.flaticon.com/512/9703/9703596.png",
-            createdAt: "2025-09-04T02:38:21.124Z",
-            updatedAt: "2025-09-04T02:38:21.124Z",
-            status: "active"
-          }
-        ]);
-      } finally {
-        setLoading(false);
+      const url = BASE_URL.includes("{{") 
+        ? "http://localhost:5000/api/users"
+        : `${BASE_URL}/api/users`;
+
+      // Read and parse token
+      const storedToken = localStorage.getItem("accessToken");
+      const token = storedToken ? JSON.parse(storedToken) : null;
+
+      if (!token) {
+        throw new Error("No access token found. Please log in again.");
       }
-    };
 
-    fetchUsers();
-  }, [BASE_URL]);
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const usersFromDb: User[] = await response.json();
+
+        const usersWithStatus = usersFromDb.map(user => ({
+          ...user,
+          status: (user.status || "active") as "active" | "blocked",
+        }));
+
+        setUsers(usersWithStatus);
+      } else {
+        throw new Error(`Failed to fetch users: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      setError(error instanceof Error ? error.message : "Failed to fetch users");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchUsers();
+}, [BASE_URL]);
 
   const filteredUsers = useMemo(() => {
     return users.filter((user) => {
@@ -166,8 +108,7 @@ const ManageUsers: React.FC = () => {
       if (!user) return;
       
       const newStatus = user.status === "active" ? "blocked" : "active";
-      
-      // Replace {{BASE_URL}} with actual URL if needed
+
       const url = BASE_URL.includes("{{") 
         ? `https://api.example.com/users/${userId}/status` 
         : `${BASE_URL}/users/${userId}/status`;
@@ -176,8 +117,7 @@ const ManageUsers: React.FC = () => {
         method: "PATCH",
         headers: {
           'Content-Type': 'application/json',
-          // Add authorization header if needed
-          // 'Authorization': `Bearer ${token}`,
+
         },
         body: JSON.stringify({ status: newStatus }),
       });
@@ -193,7 +133,7 @@ const ManageUsers: React.FC = () => {
       }
     } catch (error) {
       console.error("Error updating user status:", error);
-      // For demo purposes, still update the UI
+    
       const user = users.find((u) => u._id === userId);
       if (user) {
         const newStatus = user.status === "active" ? "blocked" : "active";

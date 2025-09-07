@@ -48,9 +48,9 @@ export default function EventSearchFilter({
   };
 
   return (
-    <div className="relative mt-28"> {/* <-- added space from navbar */}
+    <div className="relative mt-28">
       <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 rounded-2xl shadow-lg border border-slate-200/60 p-6 mb-8 backdrop-blur-sm">
-        {/* Search bar only */}
+
         <div className="relative">
           <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 z-10">
             <Search className="h-5 w-5" />
@@ -68,7 +68,7 @@ export default function EventSearchFilter({
         </div>
       </div>
 
-      {/* Events grid */}
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {filteredEvents.map((event) => (
           <EventCard key={event._id} event={event} />
