@@ -119,19 +119,16 @@
   }
 }
 
-@theme {
-  --animate-slide: slide 0.2s ease-in-out forwards;
+@layer utilities {
   @keyframes slide {
     0% {
-      /* transform: translateX(-100%); */
       width: 0;
     }
     100% {
-      /* transform: translateX(0%); */
       width: 75%;
     }
   }
-  --animate-scale: scale 0.8s ease-in-out forwards;
+
   @keyframes scale {
     0% {
       scale: 0.5;
@@ -143,4 +140,13 @@
       scale: 1;
     }
   }
+
+  .animate-slide {
+    animation: slide 0.2s ease-in-out forwards;
+  }
+
+  .animate-scale {
+    animation: scale 0.8s ease-in-out forwards;
+  }
 }
+
