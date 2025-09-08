@@ -93,7 +93,7 @@ GET /api/tickets/:id → Get ticket details
 #Regarding some problems I have to shutdown the netlfy url so here is new url after solvign all the problems 
 ###Also HEROKU needs visa and I dont have one so i use netlfy. 
 
-leafy-arithmetic-153f01.netlify.app
+[leafy-arithmetic-153f01.netlify.app](https://luxury-paprenjak-9bad3d.netlify.app/)
 
 ####admin account to see admin panel:
 admin007@gmail.com
